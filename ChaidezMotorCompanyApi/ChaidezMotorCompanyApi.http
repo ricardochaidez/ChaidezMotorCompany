@@ -1,6 +1,0 @@
-@ChaidezMotorCompanyApi_HostAddress = http://localhost:5193
-
-GET {{ChaidezMotorCompanyApi_HostAddress}}/cars/
-Accept: application/json
-
-###
