@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ChaidezMotorCompany.Domain;
 using AutoMapper;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace ChaidezMotorCompany.Api.Controllers.v1;
 
@@ -22,6 +23,9 @@ public class CarsController : ControllerBase
     [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(IEnumerable<CarViewModel>), StatusCodes.Status200OK)]
+    [ResponseCachingFilter]
+    [OutputCache(PolicyName = OutputCachePolicies.CARS)]
+    [ResponseCache(CacheProfileName = ResponseCacheProfiles.CARS)]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
         IEnumerable<Domain.Models.Car> cars = await _carDomain.GetCars(cancellationToken);
