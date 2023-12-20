@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "c36f0aa6-4946-462b-89e7-f554485a6d03",
+		"name": "ChaidezMotorCompany",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "613312"
+	},
+	"item": [
+		{
+			"name": "Cars",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseHeaders = pm.response.headers;",
+							"postman.setEnvironmentVariable(\"ETAGCARS\", responseHeaders.get('ETag'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-None-Match",
+						"value": "{{ETAGCARS}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5248/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5248",
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cars",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseHeaders = pm.response.headers;",
+							"postman.setEnvironmentVariable(\"ETAGCARS\", responseHeaders.get('ETag'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "If-None-Match",
+						"value": "{{ETAGCARS}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5248/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5248",
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseHeaders = pm.response.headers;",
+							"postman.setEnvironmentVariable(\"ETAGCARS\", responseHeaders.get('ETag'));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-None-Match",
+						"value": "{{ETAGCARS}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5248/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5248",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
