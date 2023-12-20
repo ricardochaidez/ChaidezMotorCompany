@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ChaidezMotorCompany.Domain;
-using System.Net.Mime;
-using Microsoft.AspNetCore.Components.Forms.Mapping;
+using AutoMapper;
 
 namespace ChaidezMotorCompany.Api.Controllers.v1;
 
@@ -17,14 +16,15 @@ public class CarsController : ControllerBase
     {
         _logger = logger;
         _carDomain = carDomain;
+        _mapper = mapper;
     }
 
     [HttpGet]
     [Produces("application/json")]
-    [ProducesResponseType(typeof())]
+    [ProducesResponseType(typeof(IEnumerable<CarViewModel>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
-         var cars = await _carDomain.GetCars(cancellationToken);
-         return Ok(cars);
+        IEnumerable<Domain.Models.Car> cars = await _carDomain.GetCars(cancellationToken);
+        return Ok(_mapper.Map<IEnumerable<CarViewModel>>(cars));
     }
 }

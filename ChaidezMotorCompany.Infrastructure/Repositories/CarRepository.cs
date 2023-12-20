@@ -1,25 +1,32 @@
-﻿using ChaidezMotorCompany.Domain;
+﻿using AutoMapper;
+using ChaidezMotorCompany.Domain;
 using ChaidezMotorCompany.Domain.Models;
 
 namespace ChaidezMotorCompany.Infrastructure;
 
 public class CarRepository : ICarRepository
 {
+    private readonly IMapper _mapper;
+
+    public CarRepository(IMapper mapper)
+    {
+        _mapper = mapper;
+    }
     public async Task<IEnumerable<Car>> GetCars(CancellationToken cancellationToken)
     {
-        List<Car> cars =
+        List<CarDto> cars =
          [
-             new Car{
+             new CarDto{
                 Model = "CRS",
                 Trim = "MX",
                 Year = 2023
                 },
-            new Car{
+            new CarDto{
                 Model = "DRG",
                 Trim = "MX",
                 Year = 2023
                 },
          ];
-         return cars;
+         return _mapper.Map<IEnumerable<Car>>(cars);
     }
 }
