@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
         var expirationSeconds = configuration.GetValue<int>("Cache:CarsOutputCache:ExpirationSeconds");
         services.AddOutputCache(options => 
         {
-            options.AddPolicy("CarsOutputCachePolicy",
+            options.AddPolicy(OutputCachePolicies.CARS,
                 new OutputCachePolitcy(OutputCachePolicies.CARS,
                 duration: TimeSpan.FromSeconds(expirationSeconds)));
         });
@@ -39,6 +39,17 @@ public static class ServiceCollectionExtensions
                 NoStore = false
             });
         });
+        return services;
+    }
+
+    public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
+    {
+        var redisEndpoint = configuration.GetValue<string>("Cache:CarsOutputCache:Endpoint");
+        var redisInstanceName = configuration.GetValue<string>("Cache:CarsOutputCache:InstanceName");
+
+        services.AddHealthChecks()
+            .AddRedis(redisEndpoint, $"Redis:{redisInstanceName}");
+
         return services;
     }
 }

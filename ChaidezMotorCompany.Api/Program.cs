@@ -2,6 +2,8 @@ using System.Runtime.CompilerServices;
 using ChaidezMotorCompany.Domain;
 using ChaidezMotorCompany.Infrastructure;
 using ChaidezMotorCompany.Api.Extensions;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +26,15 @@ builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddRedisOutputCache(configuration);
 builder.Services.AddResponseCacheProfiles(configuration);
 
+builder.Services.AddHealthChecks(configuration);
+
 var app = builder.Build();
+
+app.UseHealthChecks("/health", new HealthCheckOptions()
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 //Output Cache
 app.UseOutputCache();
