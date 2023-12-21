@@ -19,9 +19,10 @@ public static class ServiceCollectionExtensions
         services.AddOutputCache(options => 
         {
             options.AddPolicy(OutputCachePolicies.CARS,
-                new OutputCachePolitcy(OutputCachePolicies.CARS,
+                new OutputCachePolicy(OutputCachePolicies.CARS,
                 duration: TimeSpan.FromSeconds(expirationSeconds)));
         });
+        
         return services;
     }
 

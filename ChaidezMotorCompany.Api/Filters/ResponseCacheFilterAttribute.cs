@@ -7,7 +7,7 @@ using Microsoft.Net.Http.Headers;
 
 namespace ChaidezMotorCompany.Api;
 
-public class ResponseCachingFilterAttribute : ActionFilterAttribute
+public class ResponseCacheFilterAttribute : ActionFilterAttribute
 {
     public override void OnActionExecuted(ActionExecutedContext context)
     {
