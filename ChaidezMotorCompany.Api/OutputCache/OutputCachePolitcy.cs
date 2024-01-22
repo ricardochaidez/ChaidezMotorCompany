@@ -3,11 +3,11 @@ using Microsoft.Extensions.Primitives;
 
 namespace ChaidezMotorCompany.Api;
 
-public class OutputCachePolitcy : IOutputCachePolicy
+public class OutputCachePolicy : IOutputCachePolicy
 {
     private readonly string _policyName;
     private readonly TimeSpan? _duration;
-    public OutputCachePolitcy(string policyName, TimeSpan? duration)
+    public OutputCachePolicy(string policyName, TimeSpan? duration)
     {
         _policyName = policyName;
         _duration = duration ?? TimeSpan.FromHours(1);
