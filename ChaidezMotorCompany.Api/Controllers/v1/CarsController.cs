@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.OutputCaching;
 namespace ChaidezMotorCompany.Api.Controllers.v1;
 
 [ApiController]
-[Route("[controller]")]
+[Route("cars")]
 public class CarsController : ControllerBase
 {
     private readonly ILogger<CarsController> _logger;
@@ -25,7 +25,7 @@ public class CarsController : ControllerBase
     [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(IEnumerable<CarViewModel>), StatusCodes.Status200OK)]
-    [ResponseCachingFilter]
+    [ResponseCacheFilter]
     [OutputCache(PolicyName = OutputCachePolicies.CARS)]
     [ResponseCache(CacheProfileName = ResponseCacheProfiles.CARS)]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
@@ -34,7 +34,7 @@ public class CarsController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<CarViewModel>>(cars));
     }
 
-    [HttpDelete]
+    [HttpDelete("cache")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> Delete(CancellationToken cancellationToken)
     {

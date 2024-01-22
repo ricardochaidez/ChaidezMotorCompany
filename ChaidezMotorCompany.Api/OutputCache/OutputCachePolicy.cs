@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.OutputCaching;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Primitives;
 
 namespace ChaidezMotorCompany.Api;

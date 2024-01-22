@@ -44,7 +44,7 @@
 			"response": []
 		},
 		{
-			"name": "Cars",
+			"name": "Cars Cache",
 			"event": [
 				{
 					"listen": "test",
@@ -67,14 +67,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:5248/cars",
+					"raw": "http://localhost:5248/cars/cache",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5248",
 					"path": [
-						"cars"
+						"cars",
+						"cache"
 					]
 				}
 			},

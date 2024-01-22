@@ -22,6 +22,7 @@ public static class ServiceCollectionExtensions
                 new OutputCachePolicy(OutputCachePolicies.CARS,
                 duration: TimeSpan.FromSeconds(expirationSeconds)));
         });
+        
         return services;
     }
 
